@@ -3,181 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Charith Sir App - Your go-to platform for educational resources">
-    <meta property="og:title" content="Welcome to Charith Sir App">
-    <meta property="og:description" content="Charith Sir App offers easy-to-understand lessons and resources for students of all levels.">
-    <meta property="og:image" content="https://charith365.github.io/charithsirapp/your-image.jpg">
-    <meta property="og:url" content="https://charith365.github.io/charithsirapp/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Charith Sir App">
-    <meta name="twitter:description" content="Charith Sir App offers easy-to-understand lessons and resources for students of all levels.">
-    <meta name="twitter:image" content="https://charith365.github.io/charithsirapp/your-image.jpg">
-    <title>Welcome to Charith Sir App</title>
-    <link rel="icon" href="https://charith365.github.io/charithsirapp/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Charith Sir ICT - Master A/L ICT and GIT with Sri Lanka's most advanced learning app.">
+    <title>Charith Sir ICT | Future of Learning</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary: #00f2ff; /* Cyan Accent from your login screen */
+            --bg: #0f0f0f;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text: #ffffff;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             margin: 0;
-            padding: 0;
-            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        /* --- HERO SECTION --- */
         header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1.5em;
-        }
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            margin-bottom: 1em;
-        }
-        .feature-section, .testimonials-section, .faq-section {
-            margin-top: 40px;
-        }
-        .link-section {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .link-section a {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .link-section a:hover {
-            background-color: #45a049;
-        }
-        .feature-list, .testimonials-list {
+            height: 80vh;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-        .feature, .testimonial {
-            width: 30%;
-            background-color: #f9f9f9;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            background: radial-gradient(circle at center, #1a2a2a 0%, #0f0f0f 100%);
+            padding: 20px;
         }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: white;
+
+        .logo-circle {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #aaa;
+            max-width: 600px;
+        }
+
+        .cta-buttons {
             margin-top: 30px;
         }
-        footer a {
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #000;
+            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.4);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 242, 255, 0.6);
+        }
+
+        /* --- FEATURES GRID --- */
+        .container {
+            max-width: 1100px;
+            margin: -50px auto 50px;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .island-tag {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* --- STATS SECTION --- */
+        .stats {
+            text-align: center;
+            padding: 60px 20px;
+            background: #151515;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-item h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-links a {
             color: #fff;
+            margin: 0 15px;
             text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.7;
         }
-        footer a:hover {
-            text-decoration: underline;
+
+        .social-links a:hover {
+            color: var(--primary);
+            opacity: 1;
         }
-        .social-icons a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #333;
-        }
-        .social-icons a:hover {
-            color: #4CAF50;
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Welcome to Charith Sir App</h1>
-    <p>Your go-to platform for educational resources</p>
+    <div class="logo-circle">CW</div>
+    <h1>Charith Sir ICT</h1>
+    <p>Empowering A/L students with the most advanced ICT & GIT learning experience in Sri Lanka.</p>
+    <div class="cta-buttons">
+        <a href="#" class="btn btn-primary">Download Android APK</a>
+        <a href="#" class="btn btn-outline">Available on iOS</a>
+    </div>
 </header>
 
 <div class="container">
-    <h2>About the App</h2>
-    <p>Charith Sir App is dedicated to providing the best educational tools for students. We aim to offer easy-to-understand lessons and resources for students of all levels.</p>
-
-    <div class="feature-section">
-        <h3>Features of the App</h3>
-        <div class="feature-list">
-            <div class="feature">
-                <h4>Interactive Lessons</h4>
-                <p>Engaging lessons that help you understand complex concepts easily.</p>
-            </div>
-            <div class="feature">
-                <h4>Practice Quizzes</h4>
-                <p>Test your knowledge with quizzes after each lesson.</p>
-            </div>
-            <div class="feature">
-                <h4>Progress Tracking</h4>
-                <p>Track your progress and improve your learning outcomes.</p>
-            </div>
+    <div class="grid">
+        <div class="card">
+            <span class="island-tag">New: Gamified Learning</span>
+            <h3>13-Island Mission</h3>
+            <p>Conquer 13 unique islands representing key ICT modules. Complete missions, earn badges, and master the syllabus through play.</p>
         </div>
-    </div>
 
-    <div class="testimonials-section">
-        <h3>User Testimonials</h3>
-        <div class="testimonials-list">
-            <div class="testimonial">
-                <p>"This app helped me ace my exams! The lessons are simple and to the point."</p>
-                <h5>- Student A</h5>
-            </div>
-            <div class="testimonial">
-                <p>"I love the quizzes! They really help me reinforce what I've learned."</p>
-                <h5>- Student B</h5>
-            </div>
-            <div class="testimonial">
-                <p>"The app is user-friendly, and I can study anywhere, anytime."</p>
-                <h5>- Student C</h5>
-            </div>
+        <div class="card">
+            <h3>Video Progress Sync</h3>
+            <p>Never lose your spot. Our smart tracking remembers exactly where you left off in your Theory or Revision lessons.</p>
         </div>
-    </div>
 
-    <div class="faq-section">
-        <h3>Frequently Asked Questions (FAQ)</h3>
-        <div class="faq">
-            <h4>How do I get started with the app?</h4>
-            <p>Simply download the app, sign up, and start exploring the lessons and quizzes.</p>
+        <div class="card">
+            <h3>GIT Seminars 2026</h3>
+            <p>Join our massive physical seminars in Gampaha, Nugegoda, and Kiribathgoda. Modern resources for the modern student.</p>
         </div>
-        <div class="faq">
-            <h4>Is there a cost for using the app?</h4>
-            <p>The app is free to download and use with optional premium features.</p>
-        </div>
-        <div class="faq">
-            <h4>Can I track my learning progress?</h4>
-            <p>Yes, you can track your progress through the app’s progress tracking feature.</p>
-        </div>
-    </div>
-
-    <div class="link-section">
-        <a href="https://charith365.github.io/charithsirapp/privacy-policy.html" target="_blank">Privacy Policy</a>
-        <a href="https://charith365.github.io/charithsirapp/terms-of-service.html" target="_blank">Terms of Service</a>
-    </div>
-
-    <div class="social-icons">
-        <h3>Follow Us</h3>
-        <a href="https://twitter.com/charithsir" target="_blank">Twitter</a>
-        <a href="https://facebook.com/charithsir" target="_blank">Facebook</a>
-        <a href="https://instagram.com/charithsir" target="_blank">Instagram</a>
     </div>
 </div>
 
+<section class="stats">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <h2>5000+</h2>
+            <p>Active Students</p>
+        </div>
+        <div class="stat-item">
+            <h2>100%</h2>
+            <p>A/L Focused</p>
+        </div>
+        <div class="stat-item">
+            <h2>24/7</h2>
+            <p>App Access</p>
+        </div>
+    </div>
+</section>
+
 <footer>
-    <p>&copy; 2024 Charith Sir App | <a href="https://charith365.github.io/charithsirapp/contact.html" target="_blank">Contact Us</a></p>
+    <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+        <a href="#">WhatsApp Community</a>
+        <a href="#">Privacy Policy</a>
+    </div>
+    <p style="margin-top: 20px; font-size: 0.8rem; color: #666;">
+        &copy; 2026 Charith Sir ICT. Developed with Flutter & Firebase.
+    </p>
 </footer>
 
 </body>
