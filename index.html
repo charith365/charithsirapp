@@ -9,9 +9,11 @@
     <style>
         :root {
             --primary: #00f2ff;
-            --bg: #0f0f0f;
-            --card-bg: rgba(255, 255, 255, 0.05);
+            --secondary: #7000ff;
+            --bg: #0b0b0d;
+            --card-bg: rgba(255, 255, 255, 0.03);
             --text: #ffffff;
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
@@ -23,79 +25,129 @@
             overflow-x: hidden;
         }
 
+        /* --- Animated Background Elements --- */
+        .bg-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            z-index: -1;
+            filter: blur(50px);
+        }
+
         header {
-            height: 80vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, #1a2a2a 0%, #0f0f0f 100%);
-            padding: 20px;
+            padding: 40px 20px;
+            position: relative;
         }
 
         .logo-circle {
-            width: 100px;
-            height: 100px;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
+            width: 110px;
+            height: 110px;
+            border: 3px solid var(--primary);
+            border-radius: 30px; /* Modern Squircle */
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 40px;
-            font-weight: bold;
+            font-size: 45px;
+            font-weight: 800;
             color: var(--primary);
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
-            margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+            margin-bottom: 30px;
+            transform: rotate(-5deg);
+            background: rgba(0, 242, 255, 0.05);
         }
 
         header h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             margin: 0;
-            background: linear-gradient(to right, #fff, var(--primary));
+            font-weight: 700;
+            letter-spacing: -2px;
+            background: linear-gradient(to bottom, #fff 40%, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         header p {
-            font-size: 1.2rem;
-            color: #aaa;
-            max-width: 600px;
+            font-size: 1.1rem;
+            color: #888;
+            max-width: 700px;
+            margin-top: 15px;
         }
 
-        .cta-buttons {
-            margin-top: 30px;
+        /* --- Download Grid Section --- */
+        .download-center {
+            width: 100%;
+            max-width: 900px;
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
         }
 
-        .btn {
-            padding: 12px 30px;
-            border-radius: 30px;
+        .dl-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 25px 20px;
+            border-radius: 24px;
             text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            display: inline-block;
-            margin: 10px;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(10px);
         }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: #000;
-            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.4);
+        .dl-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            background: rgba(0, 242, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .btn-outline {
-            border: 1px solid var(--primary);
-            color: var(--primary);
+        .dl-card svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--primary);
+            margin-bottom: 15px;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 242, 255, 0.6);
+        .dl-card .platform-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .dl-card .platform-sub {
+            font-size: 0.75rem;
+            color: #777;
+            text-align: center;
+        }
+
+        /* Badge for specific requirements */
+        .badge-silicon {
+            background: #ff3b30;
+            color: white;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-top: 10px;
+            text-transform: uppercase;
         }
 
         .container {
             max-width: 1100px;
-            margin: -50px auto 50px;
+            margin: 40px auto 80px;
             padding: 0 20px;
         }
 
@@ -107,37 +159,28 @@
 
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 35px;
+            border-radius: 30px;
             transition: 0.3s;
         }
 
         .card:hover {
-            border-color: var(--primary);
-            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.06);
         }
 
         .card h3 {
             color: var(--primary);
             margin-top: 0;
-        }
-
-        .island-tag {
-            background: rgba(0, 242, 255, 0.1);
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
         }
 
         .stats {
             text-align: center;
-            padding: 60px 20px;
-            background: #151515;
+            padding: 100px 20px;
+            background: linear-gradient(to bottom, transparent, #111, transparent);
         }
 
         .stats-grid {
@@ -149,88 +192,109 @@
         }
 
         .stat-item h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--primary);
             margin: 0;
+            font-weight: 800;
         }
 
         footer {
-            padding: 50px 20px;
+            padding: 80px 20px;
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .social-links {
-            margin-bottom: 20px;
+            background: #000;
         }
 
         .social-links a {
-            color: #fff;
+            color: #888;
             margin: 0 15px;
             text-decoration: none;
-            font-size: 0.9rem;
-            opacity: 0.7;
+            font-size: 0.95rem;
             transition: 0.3s;
         }
 
-        .social-links a:hover {
-            color: var(--primary);
-            opacity: 1;
-        }
+        .social-links a:hover { color: var(--primary); }
 
-        .legal-links {
-            margin-top: 20px;
-            font-size: 0.8rem;
+        /* Installation Note Box */
+        .notice-box {
+            background: rgba(255, 193, 7, 0.05);
+            border: 1px dashed rgba(255, 193, 7, 0.3);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: #aaa;
+            display: inline-block;
         }
-
-        .legal-links a {
-            color: #888;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        .legal-links a:hover { color: var(--primary); }
 
         @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; }
+            header h1 { font-size: 2.8rem; }
+            .download-center { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
 <body>
 
+<div class="bg-glow"></div>
+
 <header>
     <div class="logo-circle">CW</div>
     <h1>Charith Sir ICT</h1>
-    <p>Empowering A/L students with the most advanced ICT & GIT learning experience in Sri Lanka.</p>
-    <div class="cta-buttons">
-        <a href="https://play.google.com/store/apps/details?id=online.charithw.charithsir" class="btn btn-primary" target="_blank">Download Android APP</a>
-        <a href="https://apps.apple.com/lk/app/charith-sir/id6743754918" class="btn btn-outline" target="_blank">Available on iOS</a>
+    <p>Sri Lanka's leading digital education hub for A/L ICT. Experience learning without boundaries on any device.</p>
+    
+    <div class="download-center">
+        <a href="YOUR_GOOGLE_DRIVE_OR_DIRECT_LINK_HERE.msix" class="dl-card">
+            <svg viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1V11.419L0 11.459V3.449zm0 8.881l9.75.039V21.9l-9.75-1.35V12.33zm10.75-10.231L24 0v11.363l-13.25.057V2.099zm13.25 10.235V24l-13.25-1.87v-9.762L24 12.334z"/></svg>
+            <span class="platform-title">Windows</span>
+            <span class="platform-sub">Download .msix Installer</span>
+        </a>
+
+        <a href="https://play.google.com/store/apps/details?id=online.charithw.charithsir" target="_blank" class="dl-card">
+            <svg viewBox="0 0 24 24"><path d="M17.523 15.3414C17.523 16.5161 16.5147 17.523 15.3414 17.523H8.65863C7.48532 17.523 6.47701 16.5161 6.47701 15.3414V8.65863C6.47701 7.48532 7.48532 6.47701 8.65863 6.47701H15.3414C16.5147 6.47701 17.523 7.48532 17.523 8.65863V15.3414Z" fill-opacity="0.3"/><path d="M11.64 1L12 1L12.36 1C13.43 1.05 14.39 1.63 14.93 2.5L15.3 3.09C15.65 3.65 15.48 4.4 14.92 4.75C14.36 5.1 13.61 4.93 13.26 4.37L13.06 4.05C12.87 3.75 12.54 3.55 12.18 3.52L12 3.5L11.82 3.52C11.46 3.55 11.13 3.75 10.94 4.05L10.74 4.37C10.39 4.93 9.64 5.1 9.08 4.75C8.52 4.4 8.35 3.65 8.7 3.09L9.07 2.5C9.61 1.63 10.57 1.05 11.64 1Z"/><path d="M7 11V18C7 19.66 8.34 21 10 21H14C15.66 21 17 19.66 17 18V11H7Z" /></svg>
+            <span class="platform-title">Android</span>
+            <span class="platform-sub">Google Play Store</span>
+        </a>
+
+        <a href="https://apps.apple.com/lk/app/charith-sir/id6743754918" target="_blank" class="dl-card">
+            <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .76-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.36 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <span class="platform-title">iPhone / iPad</span>
+            <span class="platform-sub">Apple App Store</span>
+        </a>
+
+        <a href="https://apps.apple.com/lk/app/charith-sir/id6743754918" target="_blank" class="dl-card">
+            <svg viewBox="0 0 24 24"><path d="M22 17.0022C22 18.6591 20.6569 20.0022 19 20.0022H5C3.34315 20.0022 2 18.6591 2 17.0022V7.0022C2 5.34534 3.34315 4.0022 5 4.0022H19C20.6569 4.0022 22 5.34534 22 7.0022V17.0022Z" fill-opacity="0.3"/><path d="M10 22L14 22L15 24L9 24L10 22Z"/><path d="M18.71 13.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .76-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 11 2.94 6.45 4.7 3.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 -2.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.36 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" transform="translate(0, 5) scale(0.7)"/></svg>
+            <span class="platform-title">macOS</span>
+            <span class="platform-sub">Via App Store</span>
+            <span class="badge-silicon">Apple Silicon Only</span>
+        </a>
+    </div>
+
+    <div class="notice-box">
+        💡 <b>Windows User?</b> If prompted, click "More Info" → "Run Anyway" during installation.
     </div>
 </header>
 
 <div class="container">
     <div class="grid">
         <div class="card">
-            <span class="island-tag">New: Gamified Learning</span>
-            <h3>13-Island Mission</h3>
-            <p>Conquer 13 unique islands representing key ICT modules. Complete missions, earn badges, and master the syllabus through play.</p>
+            <h3>Island-Based Journey</h3>
+            <p>Master the ICT syllabus through 13 interactive levels. Each island unlocks new knowledge and missions designed specifically for A/L standards.</p>
         </div>
         <div class="card">
-            <h3>Video Progress Sync</h3>
-            <p>Never lose your spot. Our smart tracking remembers exactly where you left off in your Theory or Revision lessons.</p>
+            <h3>Seamless Progress</h3>
+            <p>Start a video on your phone during class and finish it on your Windows laptop at home. Your progress is synced instantly to the cloud.</p>
         </div>
         <div class="card">
-            <h3>GIT Seminars 2026</h3>
-            <p>Join our massive physical seminars in Gampaha, Nugegoda, and Kiribathgoda. Modern resources for the modern student.</p>
+            <h3>Relax Mode</h3>
+            <p>Study-life balance matters. Use our built-in Relax Mode with spatial audio and calming visuals to recharge between heavy study sessions.</p>
         </div>
     </div>
 </div>
 
 <section class="stats">
     <div class="stats-grid">
-        <div class="stat-item"><h2>5000+</h2><p>Active Students</p></div>
-        <div class="stat-item"><h2>100%</h2><p>A/L Focused</p></div>
-        <div class="stat-item"><h2>24/7</h2><p>App Access</p></div>
+        <div class="stat-item"><h2>2026</h2><p>Tech Ready</p></div>
+        <div class="stat-item"><h2>10k+</h2><p>Resource Files</p></div>
+        <div class="stat-item"><h2>Fast</h2><p>Global Sync</p></div>
     </div>
 </section>
 
@@ -239,16 +303,16 @@
         <a href="https://www.facebook.com/charith.w.ict." target="_blank">Facebook</a>
         <a href="https://www.youtube.com/@Charith365" target="_blank">YouTube</a>
         <a href="https://wa.me/94712334884" target="_blank">WhatsApp</a>
-        <a href="mailto:charith365@gmail.com">charith365@gmail.com</a>
+        <a href="mailto:charith365@gmail.com">Contact Sir</a>
     </div>
 
     <div class="legal-links">
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms-of-service.html">Terms of Service</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-of-service.html">Terms</a>
     </div>
 
-    <p style="margin-top: 20px; font-size: 0.8rem; color: #666;">
-        &copy; 2026 Charith Sir ICT.
+    <p style="margin-top: 30px; font-size: 0.8rem; color: #444; letter-spacing: 1px;">
+        &copy; 2026 CHARITH SIR ICT. DESIGNED FOR THE FUTURE.
     </p>
 </footer>
 
